@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Situations Financières</title>
+    {% extends 'base.html'%}
+
+</head>
+
+<body>
+    {% block content %}
+    <p>
+        <h5>Bienvenue sur la page de la saisie des Situations Financières.</h5>
+    </p>
+    <div class="container ">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i><h5 class="card-title">Saisie des Situations Financières </h5></i>
+                    <br>
+                    <row>
+                        <div>
+                            <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                                {% csrf_token %}
+                                <i>{{ form.as_p }}</i>
+                                <br>
+                                <button type="submit" class="btn btn-success"><i>Enregistrer</i></button>
+                            </form>
+                        </div>
+                        <div class="display_table">
+                            <h5 align="center">Liste des Situations Financières</h5>
+                            <table class="table table-secondary table-hover">
+                                <!--<table class="table">-->
+                                <thead class="thd" height="10">
+                                    <td scope="col">Id</td>
+                                    <td scope="col">Situation</td>
+                                    <td scope="col">Période</td>
+                                    <td scope="col">Type</td>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr scope="row">
+                                        <td><a href="{% url 's_sit_fin' item.id %}">{{ item.id }}</a></td>
+                                        <td>{{ item.sit }}</td>
+                                        <td>{{ item.periode }}</td>
+                                        <td>{{ item.type }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                    </row>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+</body>
+
+</html>

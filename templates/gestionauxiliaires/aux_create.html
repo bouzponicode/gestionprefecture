@@ -1,0 +1,16 @@
+<form method="post" data-url="{% url 'aux_create' %}" class="create-form">
+    {% csrf_token %}
+    <div class="model-header">
+        <h5 class="model-title">Create Auxiliaire</h5>
+        <button type="button" class="close" data-dimiss="modal" aria-label="Close"> 
+                <span aria-hidden="true">&times; </span>
+            </button>
+    </div>
+    <div class="modal-body">
+        {{ form.as_p }}
+    </div>
+    <div class="model-footer">
+        <button type="button" class="btn btn-secondary" data-dimiss="modal">Close</button>
+        <button type="submit" class="btn badge-primary">Save Changes</button>
+    </div>
+</form>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Pays</title>
+   {% extends 'base.html'%}
+
+</head>
+<body>
+{% block content %}
+<p>
+<h3>Bienvenue sur la page de la saisie des Pays.</h3>
+</p>
+<td>
+             <a href="{% url 'index' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Accueil
+              </a>
+ </td>
+ <td>
+             <a href="{% url 'home' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Liste
+              </a>
+ </td>
+ 
+                    <row>
+                        <div>
+                            <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                                {% csrf_token %}
+                                <i>{{ form.as_p }}</i>
+                                <br>
+                                 <button type="submit" class="btn btn-info"><i>Enregistrer</i></button>
+                            </form>
+                        </div>
+                        
+                            <div class="display_table">     
+                        <h5 align="center">Liste des Pays</h5>
+                            <table  class="table table-hover table-dark">
+                                <!--<table class="table">-->
+                                <thead class="thd" height="10">
+                                    <td scope="col">code pays</td>
+                                    <td scope="col">c_Pays</td>
+                                    <td scope="col">paysF</td>
+                                    <td scope="col">paysA</td>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr scope="row">
+                                        <td><a href="{% url 's_pays' item.code_Pays %}">{{ item.code_Pays }}</a></td>
+                                        <td>{{ item.c_Pays }}</td>
+                                        <td>{{ item.paysF }}</td>
+                                        <td>{{ item.paysA }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                            
+                        
+                    </row>
+                
+{% endblock %}
+</body>
+</html>

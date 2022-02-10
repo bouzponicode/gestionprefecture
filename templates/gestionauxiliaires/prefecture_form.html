@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des préfectures</title>
+   {% extends 'base.html'%}
+
+</head>
+<body>
+{% block content %}
+<p>
+<h3>Bienvenue sur la page de la saisie des préfectures.</h3>
+</p>
+<td>
+             <a href="{% url 'index' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Accueil
+              </a>
+ </td>
+ <td>
+             <a href="{% url 'home' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Liste
+              </a>
+ </td>
+                    <i><h5 class="card-title">Saisie des préfectures </h5></i>
+                    <br> 
+
+                    <row>
+                        <div>
+                            <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                                {% csrf_token %}
+                                <i>{{ form.as_p }}</i>
+                                <br>
+                                 <button type="submit" class="btn btn-info"><i>Enregistrer</i></button>
+                            </form>
+                        </div>
+                        
+                            <div class="display_table">     
+                        <h5 align="center">Liste des Préfectures</h5>
+                            <table  class="table table-hover table-dark">
+                                <!--<table class="table">-->
+                                <thead class="thd" height="10">
+                                    <td scope="col">code Prefectures</td>
+                                    <td scope="col">c_Prefectures</td>
+                                    <td scope="col">PrefectureF</td>
+                                    <td scope="col">PrefectureA</td>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr scope="row">
+                                        <td><a href="{% url 's_prefecture' item.id %}">{{ item.code_Prefecture }}</a></td>
+                                        <td>{{ item.c_Pref }}</td>
+                                        <td>{{ item.prefF }}</td>
+                                        <td>{{ item.prefA }}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>    
+                    </row>
+{% endblock %}
+</body>
+</html>

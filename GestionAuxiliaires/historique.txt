@@ -1,0 +1,248 @@
+set-executionpolicy unrestricted
+03/03/1961
+07/08/21
+ajout des champs au models : obs et d_...
+on passe au formulaire de saisie
+form PersonModF a mettre a jour
+10/08/21
+apres installation du modul filters par la commande pip install django-filters
+    -création du fichier filters
+views à mettre à jour
+13/08/21
+Aprés avoir mettre à jour wies et urls
+on passe au templetes : .html
+20/09/2021
+- La table des auxiliaires doit comporter juste les champs:
+id, nom, prenom et les autres composantes enfants, conjoints, sit adm, et autres avec des icons d'affichage et de création
+MOQUADDEM URBAIN 1er CATEGORIE
+مقدم حضاري الدرجة الأولى
+ARIFA URBAIN
+عريفة حضارية
+CHEIKH RURAL
+شيخ قروي
+MOQUADDEM RURAL
+مقدم قروي
+remplacement de path('aux_saisie', views.ref_form, name='aux_form') par path('s_aux', views.s_aux, name='s_aux')
+2/12/2021
+création de la fonction  def l_enf(request,cin): à complèter les autres étapes
+- ? l url 
+-? .html
+...
+conjoints
+creer les templetes.html
+<td>
+    <a href="{% url 's_enf' %}">
+        <i class="fas fa-plus"></i>
+    </a>
+    <a href="{% url 'e-_enf' enf.id %}">
+        <i class="fas fa-edit"></i>
+    </a>
+    <a href="{% url 'd_enf' enf.id %}">
+        <i class="fas fa-trash-alt"></i>
+    </a>
+</td
+
+def s_enf (request,id= 0,cin=""):
+    #queryset = Ref.objects.filter(pk= id) 
+    #cine=queryset.cin
+    print("1----",id,cin)
+       
+    if request.method == "GET":
+        #print(id,cine)
+        #if id == 0:
+        #try:
+            #queryst_Enf = Enf.objects.get(pk= id)
+        id= 0
+        print("11----",id,cine)
+        #except Enf.DoesNotExist:
+            #id = 0
+            #print("10----",id,cine)
+        if id == 0 :
+            print("20----",id,cine)
+            form = EnfModF()
+            print("30----",id,cine)
+            try:
+                queryst_Enf = Enf.objects.get(pk= id)
+            except Enf.DoesNotExist:
+                id = 0
+            items= Enf.objects.filter(cin_Parent=cine)
+            context= {'items': items, 'form': form}
+            print("40----",id,cine)
+            return render(request, "gestionAuxiliaires/s_enf.html", context)
+        else:
+            print("2----",id,cine)
+            queryset = Enf.objects.get(pk= id)   
+            form = EnfModF(instance= queryset)
+        cine=queryset.cin
+        print("50----",id,cine)
+        items= Ref.objects.filter(cin=cine)
+        context= {'items': items, 'form': form}
+        return render(request, "gestionAuxiliaires/s_enf.html", context)
+    else:
+        if id == 0:
+            
+            try:
+                queryst_Enf = Enf.objects.get(pk= id)
+            except Enf.DoesNotExist: 
+                form = EnfModF(request.POST, request.FILES)
+                
+                
+        else:
+            print("3-----",id,cine)
+            try:
+                queryst_Enf = Enf.objects.get(pk= id)
+            except Enf.DoesNotExist: 
+                form = EnfModF(request.POST, request.FILES)
+            queryset = Enf.objects.get(pk=id)
+            form = EnfModF(request.POST, request.FILES, instance=queryset)
+        if form.is_valid():
+           # print("4-----",id,cine)
+            form = form.save(commit= False)
+            form.cin_Parent = cine
+            form.save()
+    cin=queryset.cin_Parent
+    items= Enf.objects.filter(cin_Parent=cine)
+    context= {'items': items, 'form': form}
+    return render(request, "gestionAuxiliaires/s_enf.html", context)
+
+    @property
+    def c_sit_fin(self):
+        return '%s %s' % (self.sit, self.periode)
+
+
+gESTION DES ERREURS:
+
+if something:
+    raise Exception('My error!')
+
+
+    
+
+def clean_recipients(self):#RECIPENTS EST UN CHAMPS DE FORMULAIRE;  fred@example.com EST UNE EXPRESSION A CHERCHER 
+DS LES VALEURS SAISIE
+        data = self.cleaned_data['recipients']
+        if "fred@example.com" not in data:
+            raise ValidationError("You have forgotten about Fred!")
+
+        # Always return a value to use as the new cleaned data, even if
+        # this method didn't change it.
+        return data
+
+Message de confirmation:
+var val = confirm("Voulez-vous continuer?");
+if( val == true ) {
+         document.write ("L'utilisateur veut continuer!");
+} else {
+         document.write ("L'utilisateur ne veut pas continuer!");
+}
+NinjaScripter video de deploiment de site django
+codingentrepreneur 64 - Dynamic New Forms in a Django Formset via JavaScript - Python & Django 3.2 Tutorial Series
+....
+AJAXify Django Forms // Django Tutorial // Learn Python Django
+Django forms with Ajax | How to use ajax with django
+Form Submission in Django without Page Refresh using AJAX
+Ajax and Jquery in Django Form | Submit data without page Reload
+Django Jquery search autocomplete | Filter form suggestions
+Submit Form Using Ajax in Django
+chanal tv Mhadi Ahmed
+vide3 8:36
+
+
+plugin.js
+$(document).ready(function() {
+    $("h4").hide();
+
+    $('.show-form').click(function() {
+
+        $.ajax({
+            url: '/a_l_aux/aux_create/',
+            type: 'get',
+            dataType: 'json',
+            beforSend: function() {
+
+                $('#modal-aux').modal('show');
+            },
+            success: function(data) {
+                $('#modal-aux.modal-content').html(data.html_form);
+            }
+        })
+
+    })
+})
+
+
+
+
+version du code qui marche avec la creation 22/01/22
+plugin.js
+$(document).ready(function() {
+    $('.show-form').click(function() {
+        $.ajax({
+            url: '/a_l_aux/aux_create/',
+            type: 'get',
+            dataType: 'json',
+            beforeSend: function() {
+                $('#modal-aux').modal('show');
+            },
+            success: function(data) {
+                $("#modal-aux .modal-content").html(data.html_form);
+            }
+        });
+    });
+    $('#modal-aux').on('submit', '.create-form', function() {
+        var form = $(this);
+        $.ajax({
+            url: form.attr('data-url'),
+            data: form.serialize(),
+            type: form.attr('method'),
+            dataType: 'json',
+            success: function(data) {
+                if (data.form_is_valid) {
+                    $('#aux-table tbody').html(data.a_l_aux);
+                    $("h4").html(data.a_l_aux);
+                    $('#modal-aux').modal('hide');
+                    // confirm('ligne 37 if')
+                } else {
+                    $('#modal-aux.modal-content').html(data.html_form);
+                    confirm('ligne 40 else')
+                }
+            }
+        })
+        return false;
+    })
+});
+
+la fonction de creation des aux
+def aux_create(request):
+    data = dict()
+    if request.method == "POST":
+        form = RefModF(request.POST)
+        if form.is_valid():
+            form.save()
+            data['form_is_valid'] = True
+            items = Ref.objects.all()
+            item_eff= items.count()
+            context= {
+            'items':items,'item_eff': item_eff
+            }
+            data['a_l_aux']= render_to_string('gestionauxiliaires/a_l_aux_2.html', context)
+        else:
+            data['form_is_valid'] = False
+    else:
+        form = RefModF()
+             
+    context= {
+        'form': form
+    }
+    data['html_form']= render_to_string('gestionAuxiliaires/aux_create.html', context, request = request)
+    return JsonResponse(data)
+
+    Apres avoir modifier les fonctions ShawForm et SaveForm et appeler ShowForm le boutton New Aux
+ n est pas active
+
+
+
+pprendre Js
+
+    1-Nouvelle Techno   
+    2-Grafikart.fr

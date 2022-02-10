@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Auxiliaires</title>
+{% extends 'base.html'%}
+
+</head>
+<body>
+{% block content %}
+<p>
+<h3>Bienvenue sur la page de la saisie des auxiliaires.</h3>
+</p>
+<td>
+             <a href="{% url 'index' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Accueil
+              </a>
+ </td>
+ <td>
+             <a href="{% url 'home' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Liste
+              </a>
+ </td>
+ <div class="container pb-5">
+       <div class="col-sm">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <i><h5 class="card-title">Person </h5></i>
+
+                    <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        <i>{{ personForm.as_p }}</i>
+                        <br>
+                         <button type="submit" class="btn btn-success"><i>Enregistrer</i></button>
+                    </form>
+                </div>
+            </div>
+      </div>
+</div>
+{% endblock %}
+</body>
+</html>

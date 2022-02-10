@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+     {% extends 'base.html' %}
+    <meta charset="UTF-8">
+    <title>Gestion des auxiliaires d'autorité</title>
+    
+</head>
+<body>
+
+
+<!--</body>
+</html>-->
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+
+
+</head>
+<body>
+{% block content %}
+<h5> Bienvenu sur la page d'edition de la  gestion des auxiliaires d'autorité</h5
+<p>
+
+</p>
+<div class="list-group">
+  </a>
+  <a href="{% url 'l_aux' %}" class="list-group-item list-group-item-action">liste des Auxiliaires</a>  
+  <a href="#" class="list-group-item list-group-item-action">liste des Périodes</a>
+  <a href="{% url 'l_enf' %}" class="list-group-item list-group-item-action">liste des Enfants</a>
+  <a href="{% url 'l_conj' %}" class="list-group-item list-group-item-action">liste des conjoints</a>
+</div>
+{% endblock content %}
+</body>
+</html>

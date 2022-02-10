@@ -1,0 +1,17 @@
+Recherche sur liste déroulante
+class CronForm(forms.Form):
+    days = forms.ModelChoiceField(queryset=Books.objects.all().order_by('name'))
+Ensuite votre point de vue, il devrait ressembler à quelque chose comme ceci:
+
+def show_book(request):
+   form = CronForm()
+   if request.method == "POST":
+      form = CronForm(request.POST)
+      if form.is_valid:
+         #redirect to the url where you'll process the input
+         return HttpResponseRedirect(...) # insert reverse or url
+   errors = form.errors or None # form not submitted or it has errors
+   return render(request, 'path/to/template.html',{
+          'form': form,
+          'errors': errors,
+   })

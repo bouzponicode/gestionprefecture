@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    {% load static %}
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css'%}" />
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <link href="{% static 'fontawesome-free-5.15.4-web/css/all.min.css' %}" rel="stylesheet" type="text/css">
+
+
+    <link href="{% static  'js/jquery-ui-themes-1.13.0/jquery-ui.min.css' %}" rel="stylesheet">
+    <link href="{% static  'js/jquery-ui-themes-1.13.0/jquery-ui.structure.min.css' %}" rel="stylesheet">
+    <link href="{% static  'js/jquery-ui-themes-1.13.0/jquery-ui.theme.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}" />
+    <script src="{% static 'js/jquery-ui-themes-1.13.0/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.js'%}" type="text/javascript">
+    </script>
+    <script src="{% static 'js/plugin.js' %}"></script>
+    <script src="{% static 'js/myjs.js' %}"></script>
+    <script src="{% static 'fontawesome-free-5.15.4-web/js/all.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.js'%}" type="text/javascript">
+    </script>
+
+</head>
+
+<body>
+    {% block header %}
+    <div class="row">
+        <div class="colNav col-sm">
+            <hr>
+            <nav class="navbar navbar-expand-sm bg-secondary navbar-secondary">
+                <form class="form-inline my-2 my-lg-0" method="GET">
+                    {{myFilter.form}}
+                    <button class="btn btn-outline-info my-2 my-sm-0" type="submit">Search</button>
+                </form>
+                <a href="{% url 'index'   %}" class="btn btn-outline-info">
+                    <i class="fas fa-home"></i>
+                </a>
+            </nav>
+            </hr>
+        </div>
+
+
+
+        {% endblock %}
+
+    </div>
+    <div class="sidenav ">
+        <a href="{% url 'admin' %}">Administration</a>
+        <a href="{% url 'gestion' %}">Gestion</a>
+        <a href="{% url 'edition' %}">Edition</a>
+    </div>
+    <div id="content" name="content" class="main">
+
+        {% block content %} {% endblock %}
+    </div>
+
+
+</body>
+
+</html>

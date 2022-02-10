@@ -1,0 +1,62 @@
+{% for item in items %}
+<tr scope="row">
+    <td><a href="{% url 'e_aux' item.id %}">{{ item.id }}</a></td>
+    <td>{{ item.nom }}</td>
+    <td>{{ item.prenom }}</td>
+    <td><img src="/media/{{ item.photo }}" height="30" width="30"></td>
+    <td>
+        <button class="btn btn-warning show-form-update" data-url="{% url 'aux_update' item.id %}">
+            <span class= "fas fa-edit"></span>     
+        </button>
+        <button class="btn btn-danger show-form-delete" data-url="{% url 'aux_delete' item.id %}">
+            <span class= "fas fa-trash-alt"></span>     
+        </button>
+    </td>
+    <!-- Action-->
+    <td>
+        <a href="{% url 's_aux' %}">
+            <i class="fas fa-plus"></i>
+        </a>
+        <a href="{% url 'e_aux' item.id %}">
+            <i class="fas fa-edit"></i>
+        </a>
+        <a href="{% url 'd_aux' item.id %}">
+            <i class="fas fa-trash-alt"></i>
+        </a>
+        <a href="{% url 'affiche_aux_form' item.id %}">
+            <i class="fas fa-eye"></i>
+        </a>
+    </td>
+    <!--Situation financière-->
+    <td>
+        <a href="{% url 's_sit_fin' item.id %}">
+            <i class="fas fa-eye"></i>
+        </a>
+    </td>
+    <!-- Periode-->
+    <td>
+        <a href="{% url 's_periode' item.id %}">
+            <i class="fas fa-eye"></i>
+        </a>
+    </td>
+    <!-- Grade-->
+    <td>
+        <a href="{% url 's_grade' item.id %}">
+            <i class="fas fa-eye"></i>
+        </a>
+    </td>
+    <!-- Conjoint-->
+    <td>
+        <a href="{% url 's_conj' item.cin %}">
+            <i class="fas fa-plus "></i>
+        </a>
+
+    </td>
+    <!-- Enfants-->
+    <td>
+        <a href="{% url 's_enf' item.cin %}">
+            <i class="fas fa-plus "></i>
+        </a>
+    </td>
+</tr>
+{% endfor %}

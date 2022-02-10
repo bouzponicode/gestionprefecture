@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Conjoints</title>
+    {% extends 'base.html'%}
+
+</head>
+
+<body>
+    {% block content %}
+    <p>
+        <h5>Bienvenue sur la page de la saisie des Conjoints.</h5>
+    </p>
+    <div class="container ">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i><h5 class="card-title">Saisie des Conjoints </h5></i>
+                    <br>
+                    <row>
+                        <div>
+                            <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                                {% csrf_token %}
+                                <i>{{ form.as_p }}</i>
+                                <br>
+                                <button type="submit" class="btn btn-success"><i>Enregistrer</i></button>
+                            </form>
+                        </div>
+                        <div class="display_table">
+                            <h5 align="center">Liste des Conjoints</h5>
+                            <table class="table table-secondary table-hover">
+                                <thead class="thd" height="10">
+                                    <td scope="col">Cin</td>
+                                    <td scope="col">Cin conjoints</td>
+                                    <td scope="col">Nom</td>
+                                    <td scope="col">Prénom</td>
+                                    <td scope="col">Action</td>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr scope="row">
+                                        <td>{{ item.cin_Conjoint }}</td>
+                                        <td>{{ item.cin }}</td>
+                                        <td>{{ item.nom }}</td>
+                                        <td>{{ item.prenom }}</td>
+                                        <td>
+                                            <a href="{% url 'e_conj' item.id %}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{% url 'd_conj' item.id %}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                    </row>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+</body>
+
+</html>

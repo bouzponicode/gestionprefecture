@@ -1,0 +1,14 @@
+<form method="post" data-url="{% url 'aux_delete' item.id %}" class="delete-form">
+    {% csrf_token %}
+    <div class="model-header">
+        <h5 class="model-title">Supprimer Auxiliaire</h5>
+    </div>
+    <div class="modal-body">
+        <p> Ete vous sur de vouloire suuprimer l'auxiliaire {{item.nom}}</p>
+
+    </div>
+    <div class="model-footer">
+        <button type="button" class="btn btn-secondary" data-dimiss="modal">Close</button>
+        <button type="submit" class="btn badge-danger">Supprimer</button>
+    </div>
+</form>

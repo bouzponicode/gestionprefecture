@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+     {% extends 'base.html' %}
+    <meta charset="UTF-8">
+    <title>Gestion des auxiliaires d'autorité</title>
+    
+</head>
+<body>
+
+
+<!--</body>
+</html>-->
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+
+
+</head>
+<body>
+{% block content %}
+<h3> Bienvenu sur la page de gestion des auxiliaires d'autorité</h3>
+<p>
+
+</p>
+<div class="list-group">
+  <a href="{% url 'admin' %}" class="list-group-item list-group-item-action">Administration</a>
+  <a href="{% url 'home' %}" class="list-group-item list-group-item-action">Tableau de bord</a>
+  <a href="{% url 'aux_list' %}" class="list-group-item list-group-item-action">Liste des Auxiliaires</a>
+  <a href="{% url 's_aux' %}" class="list-group-item list-group-item-action">Saisie des Auxiliaires</a>
+    <a href="#" class="list-group-item list-group-item-action">Liste des Oeuvres</a>
+  <a href="#" class="list-group-item list-group-item-action">Saisie des Oeuvres</a>
+</div>
+{% endblock content %}
+</body>
+</html>

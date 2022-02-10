@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <!--     {% extends 'base.html' %}-->
+    <meta charset="UTF-8">
+    <title>Gestion des auxilires d'autorité</title>
+</head>
+<body>
+<h1> Bienvenu sur la page de la gestion des auxiliaires d'autorité</h1>
+{% block content %}
+<hr>
+<div class="container pb-5">
+
+    <div class="col-sm">
+            <div class="card" >
+                <div class="card-body">
+                    <i><h5 class="card-title">Person </h5></i>
+                    <form class="form-inline my-2 my-lg-0" method="GET">
+                        {{personForm_as.p}}
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+    </div>
+
+
+</div>
+<hr>
+{% endblock %}
+</body>
+</html>

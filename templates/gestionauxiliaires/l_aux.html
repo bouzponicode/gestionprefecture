@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>Liste des Auxiliaires</title>
+    {% extends 'base.html'%}
+
+</head>
+
+<body>
+    {% block content %}
+    <div class="container">
+        <h4>Bienvenue sur la page des Auxiliaires de {{item_eff}} auxiliaires</h4>
+        <div>
+            <div class="row">
+                <div class="col">
+                    <div class="display_table">
+                        <h5 align="center">Liste des Auxiliaires</h5>
+                        <table class="table table-secondary table-hover">
+                            <thead class="table-dark" height="35">
+                                <td scope="col">Id</td>
+                                <td scope="col">Nom</td>
+                                <td scope="col">prénom</td>
+                                <td scope="col">Photo</td>
+                                <td scope="col">Action</td>
+                                <td scope="col">Situation</td>
+                                <td scope="col">Période</td>
+                                <td scope="col">Grade</td>
+                                <td scope="col">Conjoint</td>
+                                <td scope="col">Enfants</td>
+                            </thead>
+                            <tbody>
+                                {% for item in items %}
+                                <tr scope="row">
+                                    <td><a href="{% url 'e_aux' item.id %}">{{ item.id }}</a></td>
+                                    <td>{{ item.nom }}</td>
+                                    <td>{{ item.prenom }}</td>
+                                    <td><img src="/media/{{ item.photo }}" height="30" width="30"></td>
+                                    <!-- Action-->
+                                    <td>
+                                        <a href="{% url 's_aux' %}">
+                                            <i class="fas fa-plus"></i>
+                                        </a>
+                                        <a href="{% url 'e_aux' item.id %}">
+                                            <i class="fas fa-edit"></i>
+                                        </a>
+                                        <a href="{% url 'd_aux' item.id %}">
+                                            <i class="fas fa-trash-alt"></i>
+                                        </a>
+                                        <a href="{% url 'affiche_aux_form' item.id %}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <!--Situation financière-->
+                                    <td>
+                                        <a href="{% url 's_sit_fin' item.id %}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <!-- Periode-->
+                                    <td>
+                                        <a href="{% url 's_periode' item.id %}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <!-- Grade-->
+                                    <td>
+                                        <a href="{% url 's_grade' item.id %}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                    </td>
+                                    <!-- Conjoint-->
+                                    <td>
+                                        <a href="{% url 's_conj' item.cin %}">
+                                            <i class="fas fa-plus "></i>
+                                        </a>
+
+                                    </td>
+                                    <!-- Enfants-->
+                                    <td>
+                                        <a href="{% url 's_enf' item.cin %}">
+                                            <i class="fas fa-plus "></i>
+                                        </a>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+
+                        </table>
+
+                        <div class="pagination">
+                            <span class="step-links"><!--step-links-->
+                                {% if items.has_previous %}
+                                    <a href="?page=1">&laquo; Premier/</a>
+                                    <a href="?page={{ item.previous_page_number }}">Précedant</a>
+                                {% endif %}
+                                {% for num in item.paginator.page_range %}
+                                    {% if item.number == num %}
+                                    <span class=" pagination-number pagination-curent ">{{ num }}</span> {% elif num > item.number|add:'-10' and num
+                            < item.number|add: '10' %} <a class="  page-item active" href="?page={{ num }}">{{ num }}</a>
+                                {% endif %} {% endfor %} {% if item.has_next %}
+                                <a href="?page={{ item.next_page_number }}">Suivant/</a>
+                                <a href="?page={{ item.paginator.num_pages }}">Dernier &raquo;</a> {% endif %}
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}
+</body>
+
+</html>

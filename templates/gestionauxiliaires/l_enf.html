@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Enfants</title>
+    {% extends 'base.html'%}
+</head>
+
+{% block content %}
+<div class="container">
+    <h4>Bienvenue sur la page des Enfants de {{aux_eff}} enfants</h4>
+    <div>
+        <div class="row">
+            <div class="col">
+                <div class="display_table">
+                    <h5 align="center">Liste des enfants</h5>
+                    <table class="table table-secondary table-hover">
+                        <thead>
+                            <tr>
+                                <td scope="col">Id</td>
+                                <td scope="col">Cin Parent</td>
+                                <td scope="col">Nom</td>
+                                <td scope="col">prénom</td>
+                                <td scope="col">Date de Naissance</td>
+                                <td scope="col">Lieu de Naissance</td>
+                                <td scope="col">Action</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for item in items %}
+                            <tr scope="row">
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.cin_Parent }}</td>
+                                <td>{{ item.nom }}</td>
+                                <td>{{ item.prenom }}</td>
+                                <td>{{ item.d_naissance}}</td>
+                                <td>{{ item.l_naissance }}</td>
+                                <td>
+                                    <a href="{% url 'e_enf' item.id %}">
+                                        <i class="fas fa-edit"></i>
+                                    </a>
+                                    <a href="{% url 'd_enf' item.id %}">
+                                        <i class="fas fa-trash-alt"></i>
+                                    </a>
+                                </td>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<div class="pagination">
+    <span class="step-links">
+                                                    {% if items.has_previous %}
+                                                        <a href="?page=1">&laquo; Premier/</a>
+                                                        <a href="?page={{ item.previous_page_number }}">Précedant</a>
+                                                    {% endif %}
+                                                    {% for num in item.paginator.page_range %}
+                                                        {% if item.number == num %}
+                                                        <span class=" pagination-number pagination-curent ">{{ num }}</span> {% elif num > item.number|add:'-10' and num
+    < item.number|add: '10' %} <a class="  page-item active" href="?page={{ num }}">{{ num }}</a>
+        {% endif %} {% endfor %} {% if item.has_next %}
+        <a href="?page={{ item.next_page_number }}">Suivant/</a>
+        <a href="?page={{ item.paginator.num_pages }}">Dernier &raquo;</a> {% endif %}
+        </span>
+
+</div>
+{% endblock %}
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+     {% extends 'base.html' %}
+    <meta charset="UTF-8">
+    <title>Gestion des auxiliaires d'autorité</title>
+    
+</head>
+<body>
+
+
+<!--</body>
+</html>-->
+<head>
+    <meta charset="UTF-8">
+    <title>Administration</title>
+
+
+</head>
+<body>
+{% block content %}
+<h3> Bienvenu sur la page d'administration de la  gestion des auxiliaires d'autorité</h3>
+<p>
+
+</p>
+<div class="list-group">
+  </a>
+  <a href="{% url 's_grade' %}" class="list-group-item list-group-item-action">Saisie des Grades</a>
+  <a href="{% url 's_taux_anc' %}" class="list-group-item list-group-item-action">Saisie des taux d'ancieneté</a>
+  <a href="{% url 's_situation' %}" class="list-group-item list-group-item-action">Saisie des situations</a>
+  <a href="{% url 's_region' %}" class="list-group-item list-group-item-action">Saisie des Regions</a>
+  <a href="{% url 's_prefecture' %}" class="list-group-item list-group-item-action">Saisie des Préfectures</a>
+  <a href="{% url 's_commune' %}" class="list-group-item list-group-item-action">Saisie des Communes</a>
+  <a href="{% url 's_quartier' %}" class="list-group-item list-group-item-action">Saisie des Quartiers</a>
+  <a href="{% url 's_type' %}" class="list-group-item list-group-item-action">Saisie des Types de changement</a>
+  <a href="{% url 's_interval' %}" class="list-group-item list-group-item-action">Saisie des Intervales</a>
+  <a href="{% url 's_tb' %}" class="list-group-item list-group-item-action">Saisie des Traitements de base</a>
+  <a href="{% url 's_if' %}" class="list-group-item list-group-item-action">Saisie des Indemnités de Fonction</a>
+  
+    
+</div>
+{% endblock content %}
+</body>
+</html>

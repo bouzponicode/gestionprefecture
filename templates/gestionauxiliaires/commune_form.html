@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des communes</title>
+   {% extends 'base.html'%}
+
+</head>
+<body>
+{% block content %}
+<p>
+<h3>Bienvenue sur la page de la saisie des communes.</h3>
+</p>
+<td>
+    <a href="{% url 'index' %}" class= "btn text-secondary px=1">
+    <i class="fas fa-edit fa lg"></i>Accueil
+    </a>
+</td>
+<td>
+    <a href="{% url 'home' %}" class= "btn text-secondary px=1">
+        <i class="fas fa-edit fa lg"></i>Liste
+    </a>
+</td>
+ 
+    <i><h5 class="card-title">Saisie des communes </h5></i>
+    <br> 
+
+<row>
+    <div>
+        <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+            {% csrf_token %}
+            <i>{{ form.as_table }}</i>
+            <br>
+             <button type="submit" class="btn btn-info"><i>Enregistrer</i></button>
+        </form>
+    </div>
+    
+        <div class="display_table">     
+    <h5 align="center">Liste des Pays</h5>
+    <table  class="table table-hover table-dark">
+        <!--<table class="table">-->
+        <thead class="thd" height="10">
+            <td scope="col">code Commune</td>
+            <td scope="col">c_Commune</td>
+            <td scope="col">CommuneF</td>
+            <td scope="col">CommuneA</td>
+        </thead>
+        <tbody>
+            {% for item in items %}
+            <tr scope="row">
+                <td><a href="{% url 's_commune' item.id %}">{{ item.code_Commune }}</a></td>
+                <td>{{ item.c_Commune }}</td>
+                <td>{{ item.comF }}</td>
+                <td>{{ item.comA }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</row>
+{% endblock %}
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Gradees</title>
+    {% extends 'base.html'%}
+
+</head>
+
+<body>
+    {% block content %}
+    <p>
+        <h3>Bienvenue sur la page de la saisie des Grades.</h3>
+    </p>
+    <td>
+        <a href="{% url 'index' %}" class="btn text-secondary px=1">
+            <i class="fas fa-edit fa lg"></i>Accueil
+        </a>
+    </td>
+    <td>
+        <a href="{% url 'home' %}" class="btn text-secondary px=1">
+            <i class="fas fa-edit fa lg"></i>Liste
+        </a>
+    </td>
+    <row>
+        <div>
+            <div>
+                <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <i>{{ form.as_p }}</i>
+                    <br>
+                    <button type="submit" class="btn btn-info"><i>Enregistrer</i></button>
+                </form>
+            </div>
+            <div class="display_table">
+                <h5 align="center">Liste des Pays</h5>
+                <table class="table table-secondary table-hover">
+                    <thead class="thd">
+                        <td scope="col">Id</td>
+                        <td scope="col">Code Grade</td>
+                        <td scope="col">GradeF</td>
+                        <td scope="col">GradeA</td>
+                    </thead>
+                    <tbody>
+                        {% for item in items %}
+                        <tr scope="row">
+                            <td><a href="{% url 's_grade' item.id %}">{{ item.id }}</a></td>
+                            <td>{{ item.c_Grade }}</td>
+                            <td>{{ item.gradF }}</td>
+                            <td>{{ item.gradA }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+    </row>
+    {% endblock %}
+</body>
+
+</html>

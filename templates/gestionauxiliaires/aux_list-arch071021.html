@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Liste des Auxiliaires</title>
+    {% extends 'base.html'%}
+</head>
+<>
+    {% block content %}
+        <h1>Bienvenue sur la page des Auxiliaires</h1>
+        <div class="container">
+             <div class="row">
+                <div class="col">
+                    <div class="card text-white bg-primary mb-3" >
+                        <div class="card-header">Auxiliaires</div>
+                              <div class="card-body">
+                                  <div class ="container mb-3">
+                                      <a href="{% url 's_aux' %}" class= "btn btn-outline-warning">
+                                        <i class="fas fa-plus"></i>Add New
+                                      </a>
+                                    </div>
+                                <h5 class="card-title">Liste des Auxiliaires</h5>
+                                        <table class="table table-hover table-dark"><!--<table class="table table-secondary table-hover">-->
+                                        <thead>
+                                            <th>
+                                            <td scope="col">Id</td>
+                                            <td scope="col">Nom</td>
+                                            <td scope="col">prénom</td>
+                                            <td scope="col">Photo</td>
+                                            <td scope="col" >Action</td>
+                                            <td scope="col">Situation</td>
+                                            <td scope="col">Période</td>
+                                            <td scope="col">Grade</td>
+                                            <td scope="col">Conjoint</td>
+                                            <td scope="col">Enfants</td>
+                                            </th>
+                                        </thead>
+                                        <tbody>
+                                            {% for aux in auxs %}
+                                            <tr scope="row">
+                                                <td><a href="{% url 'e_aux' aux.id %}">{{ aux.id }}</a></td>
+                                                <td>{{ aux.nom }}</td>
+                                                <td>{{ aux.prenom }}</td>
+                                                <td><img src="/media/{{ aux.photo }}" height="30" width="30"></td>
+                                                <!-- Action-->
+                                                <td>
+                                                    <a href="{% url 'e_aux' aux.id %}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                   <a href="{% url 'd_aux' aux.id %}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                                     <a href="{% url 'affiche_aux_form' aux.id %}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <!--Situation-->
+                                                <td>
+                                                     <a href="{% url 'd_aux' aux.id %}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <!-- Periode-->
+                                                <td>
+                                                     <a href="{% url 'd_aux' aux.id %}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <!-- Grade-->
+                                                <td>
+                                                     <a href="{% url 'd_aux' aux.id %}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <!-- Conjoint-->
+                                                <td>
+                                                    <a href="{% url 'e_aux' aux.id %}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                   <a href="{% url 'd_aux' aux.id %}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                                     <a href="{% url 'conj_list' aux.cin %}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+                                                <!-- Enfants-->
+                                                <td>
+                                                    <a href="{% url 'e_aux' aux.id %}">
+                                                        <i class="fas fa-plus "></i>
+                                                    </a>
+                                                    <a href="{% url 'e_aux' aux.id %}">
+                                                        <i class="fas fa-edit"></i>
+                                                    </a>
+                                                   <a href="{% url 'd_aux' aux.id %}">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
+                                                     <a href="{% url 'enf_list' aux.cin %}">
+                                                        <i class="fas fa-eye"></i>
+                                                    </a>
+                                                </td>
+
+                                            </tr>
+                                            {% endfor %}
+                                        </tbody>
+
+                                    </table>
+
+                             </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<div class ="container pb-5">
+        <div class="pagination">
+                <span class="step-links"><!--step-links-->
+                    {% if auxs.has_previous %}
+                        <a href="?page=1">&laquo; Premier/</a>
+                        <a href="?page={{ auxs.previous_page_number }}">Précedant</a>
+                    {% endif %}
+                    {% for num in auxs.paginator.page_range %}
+                        {% if auxs.number == num %}
+                    <span class=" pagination-number pagination-curent ">{{ num }} </span>
+                        {% elif num > auxs.number|add:'-10' and num < auxs.number|add:'10' %}
+                           <a class="  page-item active" href="?page={{ num }}">{{ num }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if auxs.has_next %}
+                        <a href="?page={{ auxs.next_page_number }}">Suivant/</a>
+                        <a href="?page={{ auxs.paginator.num_pages }}">Dernier &raquo;</a>
+                    {% endif %}
+                </span>
+
+    </div>
+</div>
+
+    {% endblock %}
+
+</body>
+</html>

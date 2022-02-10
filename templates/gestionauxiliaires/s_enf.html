@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="Fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Enfants</title>
+    {% extends 'base.html'%}
+
+</head>
+
+<body>
+    {% block content %}
+    <p>
+        <h5>Bienvenue sur la page de la saisie des Enfants.</h5>
+    </p>
+    <div class="container ">
+        <div class="col">
+            <div class="card">
+                <div class="card-body">
+                    <i><h5 class="card-title">Saisie des Enfants </h5></i>
+                    <br>
+                    <row>
+                        <div>
+                            <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                                {% csrf_token %}
+                                <i>{{ form.as_p }}</i>
+                                <br>
+                                <button type="submit" class="btn btn-success"><i>Enregistrer</i></button>
+                            </form>
+                        </div>
+                        <div class="display_table">
+                            <h5 align="center">Liste des Enfants</h5>
+                            <table class="table table-secondary table-hover">
+                                <thead class="thd" height="10">
+                                    <td scope="col">Id</td>
+                                    <td scope="col">Cin Parent</td>
+                                    <td scope="col">Nom</td>
+                                    <td scope="col">Prénom</td>
+                                    <td scope="col">Action</td>
+                                </thead>
+                                <tbody>
+                                    {% for item in items %}
+                                    <tr scope="row">
+                                        <td>{{ item.id }}</td>
+                                        <td>{{ item.cin_Parent }}</td>
+                                        <td>{{ item.nom }}</td>
+                                        <td>{{ item.prenom }}</td>
+                                        <!-- Action-->
+                                        <td>
+                                            <a href="{% url 'e_enf' item.id %}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                            <a href="{% url 'd_enf' item.id %}">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+
+                            </table>
+                    </row>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+</body>
+
+</html>

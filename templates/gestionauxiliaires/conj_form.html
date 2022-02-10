@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="Fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Saisie des Conjoints</title>
+<!--   {% extends 'base.html'%}-->
+
+</head>
+<body>
+{% block content %}
+<p>
+<h3>Bienvenue sur la page de la saisie des Conjoints cin conjoint est {{ cin }}.</h3>
+</p>
+<td>
+             <a href="{% url 'index' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Accueil
+              </a>
+ </td>
+ <td>
+             <a href="{% url 'home' %}" class= "btn text-secondary px=1">
+                <i class="fas fa-edit fa lg"></i>Liste
+              </a>
+ </td>
+ <div class="container pb-5">
+       <div class="col-sm">
+            <div class="card" style="width: 20rem;">
+                <div class="card-body">
+                    <i><h5 class="card-title">Saisie des Conjoints </h5></i>
+                    <br>
+                     <!--<form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        <i>{{conjFormSet.management_form}}</i>
+                         {% for item in conjFormSet %}
+                         {{ item }}
+                         {% endfor %}
+
+                        <br>
+                         <button type="submit" class="btn btn-success"><i>Enregistrer</i></button>
+                    </form>-->
+
+                   <form action="" enctype="multipart/form-data" method="POST" autocomplete="off">
+                        {% csrf_token %}
+                        <i>{{conjForm.as_p}}</i>
+
+                        <br>
+                         <button type="submit" class="btn btn-success"><i>Enregistrer</i></button>
+                    </form>
+                </div>
+            </div>
+      </div>
+</div>
+{% endblock %}
+</body>
+</html>
